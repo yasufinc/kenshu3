@@ -34,6 +34,7 @@ group :development, :test do
   #for debug
   gem 'pry-rails'
   gem 'rubocop', require: false
+  gem 'rubocop-rails', require:false
   gem 'rspec-rails'
 end
 
