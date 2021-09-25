@@ -1,0 +1,17 @@
+<h1>Tweets</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tweet一覧</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= link_to tweet.content, tweet %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
