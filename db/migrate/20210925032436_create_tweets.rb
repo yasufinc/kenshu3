@@ -1,8 +1,8 @@
 class CreateTweets < ActiveRecord::Migration[6.1]
   def change
     create_table :tweets do |t|
-      t.string :content
-      t.integer :publicity
+      t.string :content, null: false
+      t.integer :publicity, null: false
 
       t.timestamps
     end
