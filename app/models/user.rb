@@ -4,6 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  #Userが削除された場合、関連するTweetを削除
   has_many :tweets, dependent: :destroy
+  has_many :comments
 end
