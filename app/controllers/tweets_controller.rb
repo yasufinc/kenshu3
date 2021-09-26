@@ -10,14 +10,12 @@ class TweetsController < ApplicationController
   end
 
   def create
-    #@tweet = MyThread.create(tweet_params)
-    #@tweet = MyThread.new(tweet_params)
-    # binding.pry
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
       redirect_to tweets_path, notice: "新規Tweetが作成されました"
     else
-      flash.now[:alert] = "失敗しました"
+      flash.now[:alert] = @tweet.errors.full_messages.to_sentence
+
       render :new #new.html.erbに飛んでくれる
     end
 
@@ -25,6 +23,7 @@ class TweetsController < ApplicationController
 
 
   def edit
+    user_check
   end
 
   def update
@@ -49,9 +48,16 @@ class TweetsController < ApplicationController
     end
 
     def tweet_params
-      params.require(:tweet).permit(:content, :publicity)
+      params.require(:tweet).permit(:content, :publicity, images: [])
     end
 
+    def user_check
+      if current_user.id == @tweet.user_id
+        return true
+      else
+        redirect_to tweets_path
+      end
+    end
 
 
 
