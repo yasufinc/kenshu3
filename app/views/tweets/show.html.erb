@@ -1,0 +1,23 @@
+<p>
+  <strong>Title:</strong>
+  <%= @tweet.content %>
+</p>
+
+<p>
+  <% if @tweet.images.attached? %>
+    <% @tweet.images.each do |image| %>
+      <%= image_tag image %> <br>
+    <% end %>
+  <% end %>
+</p>
+
+
+
+<h4>Comments</h4>
+
+
+
+
+<p>
+  <%= link_to '戻る', tweets_path %>
+</p>
