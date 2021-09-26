@@ -11,6 +11,8 @@ class TweetsController < ApplicationController
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
+
+
     if @tweet.save
       redirect_to tweets_path, notice: "新規Tweetが作成されました"
     else
@@ -55,6 +57,13 @@ class TweetsController < ApplicationController
       params.require(:tweet).permit(:content, :publicity, images: [])
     end
 
+    def user_check
+      if current_user.id == @tweet.user_id
+        return true
+      else
+        redirect_to tweets_path
+      end
+    end
 
 
 
