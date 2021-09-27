@@ -2,6 +2,8 @@ class Tweet < ApplicationRecord
 
   has_many_attached :images
 
+  enum publicity: {all: 0, only_followers: 1, only_me: 2}
+
   MAX_IMAGES_COUNT = 3
 
   validate :images_count_limit
@@ -12,6 +14,5 @@ class Tweet < ApplicationRecord
       errors.add(:base, "写真は#{MAX_IMAGES_COUNT}枚まで") if self.images.count > MAX_IMAGES_COUNT
     end
 
-  enum publicity: {Public: 0, Follower_only: 1, Private: 2}
 
 end
