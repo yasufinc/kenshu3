@@ -2,7 +2,7 @@ class Tweet < ApplicationRecord
 
   has_many_attached :images
 
-  enum publicity: {all: 0, only_followers: 1, only_me: 2}
+  enum publicity: {everybody: 0, only_followers: 1, only_me: 2}
 
   MAX_IMAGES_COUNT = 3
 
