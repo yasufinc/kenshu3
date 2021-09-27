@@ -14,7 +14,7 @@
     <header>
       <% if user_signed_in? %>
         <p>
-          <%= p "ログイン中のユーザ: #{current_user.email}さん" %>
+          <%= p "ログイン中のユーザ: #{current_user.name}さん" %>
         </p>
       <% end %>
     </header>
