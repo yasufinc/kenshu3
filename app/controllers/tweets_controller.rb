@@ -15,7 +15,6 @@ class TweetsController < ApplicationController
       redirect_to tweets_path, notice: "新規Tweetが作成されました"
     else
       flash.now[:alert] = @tweet.errors.full_messages.to_sentence
-
       render :new #new.html.erbに飛んでくれる
     end
 
@@ -43,9 +42,6 @@ class TweetsController < ApplicationController
     redirect_to tweets_path, notice: 'Tweetが削除されました'
   end
 
-
-
-
   private
     def set_tweet
       @tweet = Tweet.find(params[:id])
@@ -54,12 +50,5 @@ class TweetsController < ApplicationController
     def tweet_params
       params.require(:tweet).permit(:content, :publicity, images: [])
     end
-
-
-
-
-
-
-
 
 end

@@ -6,8 +6,13 @@
   </div>
 
   <div class="field">
+    <%= form.label :images %>
+    <%= form.file_field :images, multiple: true  %>
+  </div>
+
+  <div class="field">
     <%= form.label :publicity %>
-    <%= form.select :publicity, Tweet.publicities.keys.map {|k| [k, k]} %>
+    <%= form.select :publicity, Tweet.publicities.keys %>
   </div>
 
   <div class="actions">
