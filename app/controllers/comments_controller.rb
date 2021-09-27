@@ -22,6 +22,15 @@ class CommentsController < ApplicationController
     end
   end
 
+  def destroy
+    if current_user.id == @comment.user_id
+      @comment.destroy
+      redirect_to @tweet, notice: 'コメントが削除されました'
+    else
+      redirect_to @tweet
+    end
+  end
+
   private
 
     def set_tweet
