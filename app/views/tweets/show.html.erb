@@ -15,6 +15,21 @@
 
 <h4>Comments</h4>
 
+<% if @tweet.comments.any? %>
+  <table>
+    <tbody>
+      <% @tweet.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+
+<%= render 'comments/form', model: [@tweet, @tweet.comments.build] %>
 
 
 
