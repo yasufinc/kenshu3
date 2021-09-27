@@ -3,9 +3,7 @@ class TweetLikesController < ApplicationController
     before_action :set_tweet_like
 
     def create
-        if not @tweet_like.present?
-            TweetLike.create(user_id: current_user.id, tweet_id: @tweet.id)
-        end
+        TweetLike.create(user_id: current_user.id, tweet_id: @tweet.id)
         redirect_back fallback_location: root_path
     end
 
