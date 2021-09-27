@@ -2,6 +2,7 @@
 
   <div class="field">
     <%= form.label :content %>
+<<<<<<< HEAD
     <%= form.text_field :content %>
   </div>
 
@@ -9,11 +10,18 @@
     <%= form.label :images %>
     <p>写真は3マイまで</p>
     <%= form.file_field :images, multiple: true %>
+=======
+    <%= form.text_area :content %>
+>>>>>>> main
   </div>
 
   <div class="field">
     <%= form.label :publicity %>
+<<<<<<< HEAD
     <%= form.select :publicity, [1,2,3] %>
+=======
+    <%= form.select :publicity, Tweet.publicities.keys.map {|k| [k, k]} %>
+>>>>>>> main
   </div>
 
   <div class="actions">
