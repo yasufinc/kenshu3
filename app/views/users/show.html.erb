@@ -1,3 +1,42 @@
+<%= link_to '戻る', tweets_path %>
+
 <h3>Profile page</h3>
 
-<%= link_to '戻る', tweets_path %>
+<p>
+    <%= current_user.name %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tweet一覧</th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @tweets.each do |tweet| %>
+      <tr>
+        <td><%= link_to tweet.content, tweet %></td>
+        <% if current_user.id == tweet.user_id  %>
+          <td><%= link_to '[Edit]', edit_tweet_path(tweet) %></td>
+          <td><%= link_to '[x]',
+            tweet,
+            method: :delete,
+            data: { confirm: 'Are you sure?' } %>
+          </td>
+        <% end %>
+        <td>
+          <% if tweet.images.attached? %>
+            <% tweet.images.each do |image| %>
+              <%= image_tag image %> <br>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+
+
