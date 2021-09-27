@@ -7,7 +7,7 @@
 
   <div class="field">
     <%= form.label :publicity %>
-    <%= form.select :publicity, ["全体公開","フォロワーのみに公開","非公開"] %>
+    <%= form.select :publicity, Tweet.publicities.keys.map {|k| [k, k]} %>
   </div>
 
   <div class="actions">

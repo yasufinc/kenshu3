@@ -2,7 +2,9 @@ class Tweet < ApplicationRecord
 
   belongs_to :user
 
-  enum publicity: {"全体公開":0, "フォロワーのみに公開":1, "非公開":2}
+  enum publicity: {Public: 0, Follower_only: 1, Private: 2}
+
+
 
 
 end
