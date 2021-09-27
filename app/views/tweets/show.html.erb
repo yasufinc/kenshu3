@@ -13,8 +13,6 @@
   <% end %>
 </p>
 
-
-
 <h4>Comments</h4>
 
 <% if @tweet.comments.any? %>
@@ -23,9 +21,11 @@
       <% @tweet.comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
-        <td><%= link_to '[Edit]', edit_tweet_comment_path(@tweet, comment) %></td>
-        <td><%= link_to '[x]', tweet_comment_path(@tweet, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+        <% if current_user.id == comment.user_id  %>
+          <td><%= link_to '[Edit]', edit_tweet_comment_path(@tweet, comment) %></td>
+          <td><%= link_to '[x]', tweet_comment_path(@tweet, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        </tr>
       <% end %>
     </tbody>
   </table>
