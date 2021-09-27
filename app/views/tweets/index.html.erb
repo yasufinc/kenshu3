@@ -1,3 +1,7 @@
+<p>
+  <%= link_to 'profile page', user_path(current_user) %>
+</p>
+
 <h1>Tweets</h1>
 
 <table>
@@ -6,7 +10,7 @@
       <th>Tweet一覧</th>
     </tr>
   </thead>
-
+  
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
