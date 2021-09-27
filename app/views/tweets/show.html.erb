@@ -23,7 +23,7 @@
       <% @tweet.comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
-
+        <td><%= link_to '[Edit]', edit_tweet_comment_path(@tweet, comment) %></td>
       </tr>
       <% end %>
     </tbody>
