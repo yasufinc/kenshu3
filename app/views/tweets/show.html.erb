@@ -1,5 +1,7 @@
 <p>
-  <strong>Title:</strong>
+  <strong>Tweet:</strong>
+</p>
+<p>
   <%= @tweet.content %>
 </p>
 
@@ -21,12 +23,15 @@
       <% @tweet.comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
-        
+
       </tr>
       <% end %>
     </tbody>
   </table>
 <% end %>
+
+<br>
+<br>
 
 
 <%= render 'comments/form', model: [@tweet, @tweet.comments.build] %>
