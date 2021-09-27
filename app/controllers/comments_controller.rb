@@ -4,8 +4,12 @@ class CommentsController < ApplicationController
 
   def create
     @comment = current_user.comments.build(content: comment_params[:content], tweet: @tweet)
-    @comment.save
-    redirect_to @tweet, notice: '新しいコメントが作成されました'
+    if @comment.save
+      redirect_to @tweet, notice: '新しいコメントが作成されました'
+    else
+      flash.now[:alert] = @comment.errors.full_messages.to_sentence
+      render :show 
+    end
   end
 
   def edit
