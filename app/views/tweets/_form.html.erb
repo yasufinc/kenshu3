@@ -1,0 +1,17 @@
+<%= form_with(model: tweet) do |form| %>
+
+  <div class="field">
+    <%= form.label :content %>
+    <%= form.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= form.label :publicity %>
+    <%= form.select :publicity, Tweet.publicities.keys.map {|k| [k, k]} %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+
+<% end %>

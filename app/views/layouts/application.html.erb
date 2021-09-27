@@ -11,6 +11,24 @@
   </head>
 
   <body>
+    <header>
+      <% if user_signed_in? %>
+        <p>
+          <%= p "ログイン中のユーザ: #{current_user.name}さん" %>
+        </p>
+      <% end %>
+    </header>
+
+    <!-- flash[:notice], flash[:alert]を表示する -->
+    <p class="notice" id="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+
     <%= yield %>
+
+    <% if user_signed_in? %>
+    <p>
+      <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+    </p>
+    <% end %>
   </body>
 </html>
