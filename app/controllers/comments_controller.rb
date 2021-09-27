@@ -22,7 +22,8 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to @tweet, notice: 'コメントが正しく変更されました'
     else
-      render 'edit', notice: 'コメントの変更に失敗しました。'
+      flash.now[:alert] = 'コメントの更新に失敗しました。'
+      render 'edit'
     end
   end
 
@@ -31,7 +32,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       redirect_to @tweet, notice: 'コメントが削除されました'
     else
-      redirect_to @tweet
+      redirect_to @tweet, alert: 'コメントの削除に失敗しました'
     end
   end
 
