@@ -30,7 +30,7 @@ class TweetsController < ApplicationController
     if @tweet.update(tweet_params)
       redirect_to tweets_path, notice: 'Tweetが正しく変更されました'
     else
-      render 'edit'
+      render 'edit', notice: 'Tweetの更新に失敗しました。'
     end
   end
 
