@@ -6,9 +6,10 @@ Rails.application.routes.draw do
 
   resources :tweets do
     resources :comments, only: [:create, :edit, :update, :destroy]
+    post 'like' => 'tweet_likes#create'
+    delete 'like' => 'tweet_likes#destroy'
   end
 
-  resources :tweets
   resources :users, only: [:show]
 
   root 'tweets#index'
