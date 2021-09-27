@@ -9,6 +9,9 @@ class CommentsController < ApplicationController
   end
 
   def edit
+    if not current_user.comments.find(params[:id])
+      redirect_to @tweet, alert: '不正なアクセスです'
+    end
   end
 
   def update
