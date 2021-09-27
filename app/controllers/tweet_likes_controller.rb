@@ -8,9 +8,7 @@ class TweetLikesController < ApplicationController
     end
 
     def destroy
-        if @tweet_like.present?
-            @tweet_like.delete
-        end
+        @tweet_like&.delete
         redirect_back fallback_location: root_path
     end
 
