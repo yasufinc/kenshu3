@@ -1,11 +1,11 @@
 class Tweet < ApplicationRecord
 
-  has_many_attached :images
+  has_many :comments, dependent: :destroy
+  has_many_attached :images, dependent: :destroy
   belongs_to :user
   enum publicity: {everybody: 0, only_followers: 1, only_me: 2}
 
   MAX_IMAGES_COUNT = 3
-
   validate :images_count_limit
 
   private

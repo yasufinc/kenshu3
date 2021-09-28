@@ -1,0 +1,44 @@
+<p>
+  <strong>Tweet:</strong>
+</p>
+<p>
+  <%= @tweet.content %>
+</p>
+
+<p>
+  <% if @tweet.images.attached? %>
+    <% @tweet.images.each do |image| %>
+      <%= image_tag image %> <br>
+    <% end %>
+  <% end %>
+</p>
+
+<h4>Comments</h4>
+
+<% if @tweet.comments.any? %>
+  <table>
+    <tbody>
+      <% @tweet.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.content %></td>
+        <% if current_user.id == comment.user_id  %>
+          <td><%= link_to '[Edit]', edit_tweet_comment_path(@tweet, comment) %></td>
+          <td><%= link_to '[x]', tweet_comment_path(@tweet, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
+
+<br>
+<br>
+
+
+<%= render 'comments/form', model: [@tweet, @tweet.comments.build] %>
+
+
+
+<p>
+  <%= link_to '戻る', tweets_path %>
+</p>
