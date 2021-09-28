@@ -7,7 +7,7 @@ class Tweet < ApplicationRecord
 
   MAX_IMAGES_COUNT = 3
   validate :images_count_limit
-  validates :content, presence: true 
+  validates :content, {presence: true, length: {maximum: 140}}
 
   private
 
