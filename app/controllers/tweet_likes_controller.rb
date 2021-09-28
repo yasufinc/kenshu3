@@ -7,8 +7,7 @@ class TweetLikesController < ApplicationController
     end
 
     def destroy
-        tweet_like = TweetLike.find_by(user_id: current_user.id, tweet_id: @tweet.id)
-        tweet_like&.delete
+        TweetLike.where(user_id: current_user.id, tweet_id: @tweet.id).destroy_all
         redirect_back fallback_location: root_path
     end
 
