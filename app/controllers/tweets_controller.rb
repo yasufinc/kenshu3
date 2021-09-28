@@ -5,6 +5,10 @@ class TweetsController < ApplicationController
     @tweets = Tweet.all
   end
 
+  def show
+
+  end
+
   def new
     @tweet = Tweet.new
   end
