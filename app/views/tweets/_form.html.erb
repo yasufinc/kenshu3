@@ -2,7 +2,8 @@
 
   <div class="field">
     <%= form.label :content %>
-    <%= form.text_area :content %>
+    <%= tweet.errors.full_messages.to_sentence %>
+    <%= form.text_area :content, required: true %>
   </div>
 
   <div class="field">
