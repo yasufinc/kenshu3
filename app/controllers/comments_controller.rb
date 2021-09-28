@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
   end
 
   def edit
-    if not current_user.comments.find(params[:id])
+    unless current_user.comments.find(params[:id])
       redirect_to @tweet, alert: '不正なアクセスです'
     end
   end
@@ -32,7 +32,7 @@ class CommentsController < ApplicationController
       @comment.destroy
       redirect_to @tweet, notice: 'コメントが削除されました'
     else
-      redirect_to @tweet, alert: 'コメントの削除に失敗しました'
+      redirect_to @tweet, alert: 'コメントを削除できません'
     end
   end
 
