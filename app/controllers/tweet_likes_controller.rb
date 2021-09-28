@@ -2,7 +2,10 @@ class TweetLikesController < ApplicationController
     before_action :set_tweet
 
     def create
-        TweetLike.create(user_id: current_user.id, tweet_id: @tweet.id)
+        tweetlike = TweetLike.new(user_id: current_user.id, tweet_id: @tweet.id)
+        unless tweetlike.save
+            flash.now[:alert] = tweetlike.errors.full_messages.to_sentence
+        end
         redirect_back fallback_location: root_path
     end
 
