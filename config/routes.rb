@@ -15,7 +15,9 @@ Rails.application.routes.draw do
     delete 'like' => 'tweet_likes#destroy'
   end
 
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    resources :relationships, only: [:create, :destroy]
+  end
 
   root 'tweets#index'
 end
