@@ -1,8 +1,10 @@
-<p>
-  <%= link_to 'profile page', user_path(current_user) %>
-</p>
+<%= link_to '戻る', tweets_path %>
 
-<h1>Tweets</h1>
+<h3>Profile page</h3>
+
+<p>
+    <%= current_user.name %>
+</p>
 
 <table>
   <thead>
@@ -15,7 +17,7 @@
     <% @tweets.each do |tweet| %>
       <tr>
         <td><%= tweet.content %></td>
-        <td><%= link_to '[詳細]', tweet %></td>       
+        <td><%= link_to '[詳細]', tweet %></td>
         <% if current_user.id == tweet.user_id  %>
           <td><%= link_to '[編集]', edit_tweet_path(tweet) %></td>
           <td><%= link_to '[x]',
@@ -35,5 +37,3 @@
     <% end %>
   </tbody>
 </table>
-
-<%= link_to '新規Tweet作成', new_tweet_path %>

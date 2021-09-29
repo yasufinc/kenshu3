@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  #devise_for :users
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -10,6 +9,7 @@ Rails.application.routes.draw do
   end
 
   resources :tweets
+  resources :users, only: [:show]
 
   root 'tweets#index'
 end

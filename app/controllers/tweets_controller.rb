@@ -2,11 +2,11 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
   def index
-    @tweets = Tweet.all
+    @tweets = Tweet.all.order(id: "DESC")
   end
 
   def show
-
+    @comments = @tweet.comments.order(id: "DESC")
   end
 
   def new
