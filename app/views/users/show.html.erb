@@ -2,9 +2,26 @@
 
 <h3>Profile page</h3>
 
-<p>
-    <%= @user.name %>
-</p>
+<table>
+  <tbody>
+    <tr>
+      <td><%= @user.name %></td>
+      <td>
+        <% if current_user.id != @user.id  %>
+          <% if @user.followed_by?(current_user) %>
+            <%= link_to user_relationship_path(@user), method: :delete do %>
+                <button> unfollow </button>
+            <% end %>
+          <% else %>
+            <%= link_to user_relationships_path(@user), method: :post do %>
+                <button> follow </button>
+            <% end %>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
 <table>
   <thead>
