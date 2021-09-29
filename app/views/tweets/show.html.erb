@@ -18,7 +18,7 @@
 <% if @tweet.comments.any? %>
   <table>
     <tbody>
-      <% @tweet.comments.order(id: "DESC").each do |comment| %>
+      <% @comments.each do |comment| %>
       <tr>
         <td><%= comment.content %></td>
         <% if current_user.id == comment.user_id  %>
