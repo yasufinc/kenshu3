@@ -22,7 +22,7 @@
       <tr>
         <td><%= comment.content %></td>
         <% if current_user.id == comment.user_id  %>
-          <td><%= link_to '[Edit]', edit_tweet_comment_path(@tweet, comment) %></td>
+          <td><%= link_to '[詳細]', edit_tweet_comment_path(@tweet, comment) %></td>
           <td><%= link_to '[x]', tweet_comment_path(@tweet, comment), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
         </tr>

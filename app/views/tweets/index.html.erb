@@ -14,9 +14,10 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= link_to tweet.content, tweet %></td>
+        <td><%= tweet.content %></td>
+        <td><%= link_to '[詳細]', tweet %></td>       
         <% if current_user.id == tweet.user_id  %>
-          <td><%= link_to '[Edit]', edit_tweet_path(tweet) %></td>
+          <td><%= link_to '[編集]', edit_tweet_path(tweet) %></td>
           <td><%= link_to '[x]',
             tweet,
             method: :delete,
