@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_29_161104) do
+ActiveRecord::Schema.define(version: 2021_09_30_132303) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
@@ -40,17 +40,29 @@ ActiveRecord::Schema.define(version: 2021_09_29_161104) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "comment_likes", charset: "utf8mb4", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "comment_id", null: false
+  create_table "admin_users", charset: "utf8mb4", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["comment_id"], name: "index_comment_likes_on_comment_id"
-    t.index ["user_id"], name: "index_comment_likes_on_user_id"
+    t.index ["email"], name: "index_admin_users_on_email", unique: true
+  end
+
+  create_table "admins", charset: "utf8mb4", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_admins_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
   create_table "comments", charset: "utf8mb4", force: :cascade do |t|
-    t.string "content", default: "", null: false
+    t.string "content", null: false
     t.bigint "tweet_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -97,14 +109,13 @@ ActiveRecord::Schema.define(version: 2021_09_29_161104) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "name", null: false
+    t.boolean "admin_flg", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comment_likes", "comments"
-  add_foreign_key "comment_likes", "users"
   add_foreign_key "comments", "tweets"
   add_foreign_key "comments", "users"
   add_foreign_key "tweet_likes", "tweets"
