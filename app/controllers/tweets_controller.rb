@@ -1,12 +1,18 @@
-class TweetsController < ApplicationController
+class TweetsController < ApplicationController 
   before_action :set_tweet, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: :index
 
   def index
-    followers = current_user.following
-    tweets_for_everybody = Tweet.everybody
-    tweets_for_followers = Tweet.only_followers.where(user_id: followers)
-    my_tweets = current_user.tweets
-    @tweets= tweets_for_everybody.or(tweets_for_followers).or(my_tweets).distinct.order(id: "DESC")
+    @tweets =
+     if current_user
+      followers = current_user.following
+      tweets_for_everybody = Tweet.everybody
+      tweets_for_followers = Tweet.only_followers.where(user_id: followers)
+      my_tweets = current_user.tweets
+      tweets_for_everybody.or(tweets_for_followers).or(my_tweets).distinct.order(id: "DESC")
+    else
+      Tweet.everybody.order(id: "DESC")
+    end
   end
 
   def show

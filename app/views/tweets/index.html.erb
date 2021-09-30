@@ -1,5 +1,5 @@
 <p>
-  <%= link_to 'profile page', user_path(current_user) %>
+  <%= link_to 'profile page', user_path(current_user) if current_user %>
 </p>
 
 <h1>Tweets</h1>
@@ -19,23 +19,25 @@
         <td><%= link_to '[詳細]', tweet %></td>       
         <td> <%= tweet.tweet_likes.count %></td> 
         <td>
-          <% if tweet.liked_by?(current_user) %>
-            <%= link_to tweet_like_path(tweet), method: :delete do %>
-                <button> unlike </button>
+          <% if current_user %>
+            <% if tweet.liked_by?(current_user) %>
+              <%= link_to tweet_like_path(tweet), method: :delete do %>
+                  <button> unlike </button>
+              <% end %>
+            <% else %>
+              <%= link_to tweet_like_path(tweet), method: :post do %>
+                  <button> like </button>
+              <% end %>
             <% end %>
-          <% else %>
-            <%= link_to tweet_like_path(tweet), method: :post do %>
-                <button> like </button>
-            <% end %>
-          <% end %>
-        </td>
-        <% if current_user.id == tweet.user_id  %>
-          <td><%= link_to '[編集]', edit_tweet_path(tweet) %></td>
-          <td><%= link_to '[x]',
-            tweet,
-            method: :delete,
-            data: { confirm: 'Are you sure?' } %>
           </td>
+          <% if current_user.id == tweet.user_id  %>
+            <td><%= link_to '[編集]', edit_tweet_path(tweet) %></td>
+            <td><%= link_to '[x]',
+              tweet,
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %>
+            </td>
+          <% end %>
         <% end %>
         <td>
           <% if tweet.images.attached? %>
