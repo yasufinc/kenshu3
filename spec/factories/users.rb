@@ -4,5 +4,6 @@ FactoryBot.define do
     password              { 'password' }
     password_confirmation { 'password' }
     name                  { 'yasu' }
+    admin_flg             { true }
   end
 end
