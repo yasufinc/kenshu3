@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   }
 
   devise_scope :user do
-    delete 'users/sign_out', to: 'devise/sessions#destroy' #追記
+    delete 'users/sign_out', to: 'devise/sessions#destroy'
   end
 
   resources :tweets do
