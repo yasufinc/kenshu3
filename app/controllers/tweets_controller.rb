@@ -52,7 +52,12 @@ class TweetsController < ApplicationController
 
   private
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = Tweet.find_by_id(params[:id])
+
+      if @tweet.nil?
+        flash.now[:alert] = '該当するTweetがありません'
+        redirect_back fallback_location: root_path
+      end
     end
 
     def tweet_params
