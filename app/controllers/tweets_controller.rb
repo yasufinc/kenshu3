@@ -7,7 +7,6 @@ class TweetsController < ApplicationController
     tweets_for_followers = Tweet.only_followers.where(user_id: followers)
     my_tweets = current_user.tweets
     @tweets= tweets_for_everybody.or(tweets_for_followers).or(my_tweets).distinct.order(id: "DESC")
-    #binding.pry
   end
 
   def show
