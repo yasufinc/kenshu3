@@ -2,7 +2,11 @@ class TweetsController < ApplicationController
   before_action :set_tweet, only: %i[ show edit update destroy ]
 
   def index
-    @tweets = Tweet.all.order(id: "DESC")
+    followers = current_user.following
+    tweets_for_everybody = Tweet.everybody
+    tweets_for_followers = Tweet.only_followers.where(user_id: followers)
+    my_tweets = current_user.tweets
+    @tweets= tweets_for_everybody.or(tweets_for_followers).or(my_tweets).distinct.order(id: "DESC")
   end
 
   def show
