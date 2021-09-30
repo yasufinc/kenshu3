@@ -15,6 +15,7 @@
     <% @tweets.each do |tweet| %>
       <tr>
         <td><%= tweet.content %></td>
+        <td><%= link_to tweet.user.name, user_path(tweet.user) %></td>
         <td><%= link_to '[詳細]', tweet %></td>       
         <td> <%= tweet.tweet_likes.count %></td> 
         <td>
