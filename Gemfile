@@ -30,6 +30,7 @@ gem 'devise'
 gem 'rails_admin'
 
 
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
@@ -41,6 +42,7 @@ group :development, :test do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require:false
   gem 'rspec-rails'
+  gem 'factory_bot_rails'
 end
 
 group :development do

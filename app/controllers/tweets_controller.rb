@@ -7,6 +7,7 @@ class TweetsController < ApplicationController
     tweets_for_followers = Tweet.only_followers.where(user_id: followers)
     my_tweets = current_user.tweets
     @tweets= tweets_for_everybody.or(tweets_for_followers).or(my_tweets).distinct.order(id: "DESC")
+    #binding.pry
   end
 
   def show
@@ -52,7 +53,12 @@ class TweetsController < ApplicationController
 
   private
     def set_tweet
-      @tweet = Tweet.find(params[:id])
+      @tweet = Tweet.find_by_id(params[:id])
+
+      if @tweet.nil?
+        flash.now[:alert] = '該当するTweetがありません'
+        redirect_back fallback_location: root_path
+      end
     end
 
     def tweet_params
