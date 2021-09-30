@@ -4,6 +4,10 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  devise_scope :user do
+    delete 'users/sign_out', to: 'devise/sessions#destroy'
+  end
+
   resources :tweets do
     resources :comments, only: [:create, :edit, :update, :destroy]
     post 'like' => 'tweet_likes#create'
